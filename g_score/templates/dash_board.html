@@ -1,0 +1,43 @@
+{% extends "base.html" %}
+
+{% block title %}
+Score Report
+{% endblock %}
+
+{% block content %}
+<h1>Feature Report</h1>
+<canvas id="scoreChart" width="400" height="200"></canvas>
+<script>
+    const reportData = {{ report_data|safe }};
+    const ctx = document.getElementById('scoreChart').getContext('2d');
+    const chart = new Chart(ctx, {
+        type: 'bar',
+        data: {
+            labels: Object.keys(reportData),
+            datasets: [
+                {
+                    label: '>=8 points',
+                    data: Object.values(reportData).map(d => d['>=8']),
+                    backgroundColor: 'rgba(75, 192, 192, 0.6)',
+                },
+                {
+                    label: '6-8 points',
+                    data: Object.values(reportData).map(d => d['6-8']),
+                    backgroundColor: 'rgba(54, 162, 235, 0.6)',
+                },
+                {
+                    label: '4-6 points',
+                    data: Object.values(reportData).map(d => d['4-6']),
+                    backgroundColor: 'rgba(255, 206, 86, 0.6)',
+                },
+                {
+                    label: '<4 points',
+                    data: Object.values(reportData).map(d => d['<4']),
+                    backgroundColor: 'rgba(255, 99, 132, 0.6)',
+                },
+            ],
+        },
+    });
+</script>
+
+{% endblock %}

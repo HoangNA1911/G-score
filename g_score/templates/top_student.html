@@ -1,0 +1,34 @@
+{% extends 'base.html' %}
+
+{% block title %}Top Students{% endblock %}
+
+{% block content %}
+<h1>Top 10 Students in group A</h1>
+<table class="table table-bordered">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Registration Number</th>
+            <th>Total Score</th>
+            <th>Math</th>
+            <th>Physics</th>
+            <th>Chemistry</th>
+
+        </tr>
+    </thead>
+    <tbody>
+        {% for student in students %}
+        <tr>
+            <td>{{ forloop.counter }}</td>
+            <td>{{ student.sbd }}</td>
+            <td>{{ student.total_score }}</td>
+            <td>{{ student.toan }}</td>
+            <td>{{ student.vat_ly }}</td>
+            <td>{{ student.hoa_hoc }}</td>
+
+
+        </tr>
+        {% endfor %}
+    </tbody>
+</table>
+{% endblock %}
